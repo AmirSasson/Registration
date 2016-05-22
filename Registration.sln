@@ -10,9 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Access.Console", "src\CoreHelloWorld\Access.Console.xproj", "{2668B5BD-952B-4FB4-83A5-12542EB7E8E3}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Access.Console", "src\Access.Console\Access.Console.xproj", "{2668B5BD-952B-4FB4-83A5-12542EB7E8E3}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Registration.Api", "src\HelloWebApi\Registration.Api.xproj", "{65E8CC35-479B-495E-8875-D7828AA1D544}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Registration.Api", "src\Registration.Api\Registration.Api.xproj", "{65E8CC35-479B-495E-8875-D7828AA1D544}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
