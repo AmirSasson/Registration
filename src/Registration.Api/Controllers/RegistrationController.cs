@@ -15,9 +15,9 @@ namespace HelloWebApi.Controllers
     [Route("api/[controller]")]
     public class RegistrationController : Controller
     {
-        private ILogger<RegistrationController> _logger;
+        private readonly ILogger<RegistrationController> _logger;
         private readonly TokenAuthOptions _tokenOptions;
-        IRegistrationProvider _provider;
+        private readonly IRegistrationProvider _provider;
 
 
 
