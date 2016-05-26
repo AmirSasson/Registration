@@ -1,4 +1,4 @@
 # Registration
 ##implements the following flow:
 
-![Sequence](/relative/path/to/img.jpg?raw=true "Optional Title")
+![Sequence](/docs/Seq.jpg?raw=true "Optional Title")
