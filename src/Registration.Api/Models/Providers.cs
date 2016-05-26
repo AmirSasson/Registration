@@ -1,23 +1,30 @@
 ﻿using System;
+using HelloWebApi.Services;
 
 namespace HelloWebApi.Controllers
 {
     public interface IAuthenticationProvider
     {
-        string GetToken();
+        //string GetToken();
+        bool Authenticate(ICredentials credentials);
     }
 
     public class Triple8LoginProvider : IAuthenticationProvider
     {
-        public string GetToken()
+        public bool Authenticate(ICredentials credentials)
         {
-            return Guid.NewGuid().ToString();
+            return true;
         }
+
+        //public string GetToken()
+        //{
+        //    return Guid.NewGuid().ToString();
+        //}
     }
 
 
     public interface IRegistrationProvider
-    {        
+    {
         int Register(UserDetails userDetails);
     }
 

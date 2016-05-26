@@ -12,6 +12,16 @@
     <div class="row" ng-show="loginToken.length ==0">
         <form class="col-sm-6">
             <fieldset class="form-group">
+                <label for="fname">UserName</label>
+                <input type="text" class="form-control" placeholder="Enter First" ng-model="userDetails.UserName">
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="lname">Password</label>
+                <input type="password" class="form-control" placeholder="Enter Last" ng-model="userDetails.Password">
+            </fieldset>
+
+            <fieldset class="form-group">
                 <label for="fname">First Name</label>
                 <input type="text" class="form-control" id="fname" placeholder="Enter First" ng-model="userDetails.FirstName">
             </fieldset>

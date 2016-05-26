@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Principal;
+using HelloWebApi.Services;
 
 namespace HelloWebApi.Controllers
 {
@@ -16,18 +17,19 @@ namespace HelloWebApi.Controllers
     public class RegistrationController : Controller
     {
         private readonly ILogger<RegistrationController> _logger;
-        private readonly TokenAuthOptions _tokenOptions;
+        private readonly ITokenService _tokenService;
         private readonly IRegistrationProvider _registartionProvider;
-        private readonly IAuthenticationProvider _authenticationProvider;
 
 
 
-        public RegistrationController(ILogger<RegistrationController> logger, TokenAuthOptions tokenOptions, IRegistrationProvider registrationProvider, IAuthenticationProvider authenticationProvider)
+        public RegistrationController(
+            ILogger<RegistrationController> logger,
+            IRegistrationProvider registrationProvider,
+            ITokenService tokenService)
         {
             _logger = logger;
-            _tokenOptions = tokenOptions;
+            _tokenService = tokenService;
             _registartionProvider = registrationProvider;
-            _authenticationProvider = authenticationProvider;
         }
 
 
@@ -40,32 +42,11 @@ namespace HelloWebApi.Controllers
 
             int cid = _registartionProvider.Register(userDetails);
 
-            return new { Cid = cid, LoginAccessToken = GetAccessToken(cid) };
+            return new { Cid = cid, LoginAccessToken = _tokenService.Issue(userDetails) };
 
         }
 
-        private string GetAccessToken(int cid)
-        {
-            var handler = new JwtSecurityTokenHandler();
 
-            // Here, you should create or look up an identity for the user which is being authenticated.
-            // For now, just creating a simple generic identity.            
-            ClaimsIdentity identity = new ClaimsIdentity(new GenericIdentity(cid.ToString(), "TokenAuth"),
-                new[] {
-                    new Claim("EntityID", "1", ClaimValueTypes.Integer),
-                    new Claim("Cid", cid.ToString(), ClaimValueTypes.Integer),
-
-                });
-
-            var securityToken = handler.CreateJwtSecurityToken(
-                issuer: _tokenOptions.Issuer,
-                audience: _tokenOptions.Audience,
-                signingCredentials: _tokenOptions.SigningCredentials,
-                subject: identity,
-                expires: DateTime.Now.AddSeconds(90)
-                );
-            return handler.WriteToken(securityToken);
-        }
 
     }
 }

@@ -12,20 +12,20 @@ namespace HelloWebApi.Controllers
     [Route("api/[controller]")]
     public class LoginController : Controller
     {
-        IAuthenticationProvider _loginProvider;
-        public LoginController(IAuthenticationProvider loginProvider)
+        IAuthenticationProvider _authenticationProviderr;
+        public LoginController(IAuthenticationProvider authenticationProvider)
         {
-            _loginProvider = loginProvider;
-        }   
+            _authenticationProviderr = authenticationProvider;
+        }
         // GET: api/values
         [HttpGet]
-        [Authorize("AttachedToUser")]
+        [Authorize("LoginScoped")]
         // GET api/values/5        
         public dynamic Get()
         {
-            string actualLoginToken = _loginProvider.GetToken();
+            //string actualLoginToken = _authenticationProviderr.GetToken();
 
-            return new { ActualLoginToken = actualLoginToken };
+            return new { ActualLoginToken = "OK" };
         }
     }
 }

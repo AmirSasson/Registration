@@ -14,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using HelloWebApi.Controllers;
+using HelloWebApi.Services;
 
 namespace HelloWebApi
 {
@@ -68,6 +69,9 @@ namespace HelloWebApi
             services.AddSingleton(_tokenOptions);
             services.AddTransient<IAuthenticationProvider, Triple8LoginProvider>();
             services.AddTransient<IRegistrationProvider, Triple8RegisterProvider>();
+            services.AddTransient<ITokenService, TokenService>();
+
+
 
             // Enable the use of an [Authorize("Bearer")] attribute on methods and
             // classes to protect.
@@ -76,7 +80,7 @@ namespace HelloWebApi
                 auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
                     .RequireAuthenticatedUser().Build());
-                auth.AddPolicy("AttachedToUser", policy => policy.Requirements.Add(new AttachedToUserRequirement()));
+                auth.AddPolicy("LoginScoped", policy => policy.Requirements.Add(new ScopeRequierment(new[] { "Login" })));
                 //auth.AddPolicy("Access", new AuthorizationPolicy(new[] { new Over18Requirement() }, new[] { JwtBearerDefaults.AuthenticationScheme }));
 
             });
@@ -120,7 +124,7 @@ namespace HelloWebApi
                     ValidIssuer = _tokenOptions.Issuer,
 
                     //ValidateIssuerSigningKey = true,
-                     
+
                     // When receiving a token, check that we've signed it.
                     //ValidateSignature = true,
                     //SignatureValidator = CustomSignatureValidator,
