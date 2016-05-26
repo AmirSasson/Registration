@@ -66,7 +66,7 @@ namespace HelloWebApi
             // Save the token options into an instance so they're accessible to the 
             // controller.
             services.AddSingleton(_tokenOptions);
-            services.AddTransient<IActualLoginProvider, Triple8LoginProvider>();
+            services.AddTransient<IAuthenticationProvider, Triple8LoginProvider>();
             services.AddTransient<IRegistrationProvider, Triple8RegisterProvider>();
 
             // Enable the use of an [Authorize("Bearer")] attribute on methods and
@@ -119,9 +119,11 @@ namespace HelloWebApi
                     ValidAudience = _tokenOptions.Audience,
                     ValidIssuer = _tokenOptions.Issuer,
 
+                    //ValidateIssuerSigningKey = true,
+                     
                     // When receiving a token, check that we've signed it.
                     //ValidateSignature = true,
-                    SignatureValidator = CustomSignatureValidator,
+                    //SignatureValidator = CustomSignatureValidator,
                     //SignatureValidator=new 
                     // When receiving a token, check that it is still valid.
                     ValidateLifetime = true,

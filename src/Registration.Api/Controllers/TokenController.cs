@@ -68,7 +68,7 @@ namespace HelloWebApi.Controllers
 
             var securityToken = handler.CreateJwtSecurityToken(
                 issuer: _tokenOptions.Issuer,
-                audience: _tokenOptions.Audience,
+                audience: _tokenOptions.Audience,                 
                 signingCredentials: _tokenOptions.SigningCredentials,
                 subject: identity,
                 expires: DateTime.Now.AddSeconds(90)

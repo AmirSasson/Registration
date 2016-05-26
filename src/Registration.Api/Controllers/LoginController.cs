@@ -12,11 +12,11 @@ namespace HelloWebApi.Controllers
     [Route("api/[controller]")]
     public class LoginController : Controller
     {
-        IActualLoginProvider _loginProvider;
-        public LoginController(IActualLoginProvider loginProvider)
+        IAuthenticationProvider _loginProvider;
+        public LoginController(IAuthenticationProvider loginProvider)
         {
             _loginProvider = loginProvider;
-        }
+        }   
         // GET: api/values
         [HttpGet]
         [Authorize("AttachedToUser")]

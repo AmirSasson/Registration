@@ -2,12 +2,12 @@
 
 namespace HelloWebApi.Controllers
 {
-    public interface IActualLoginProvider
+    public interface IAuthenticationProvider
     {
         string GetToken();
     }
 
-    public class Triple8LoginProvider : IActualLoginProvider
+    public class Triple8LoginProvider : IAuthenticationProvider
     {
         public string GetToken()
         {

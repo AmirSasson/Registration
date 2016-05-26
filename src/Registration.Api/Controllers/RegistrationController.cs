@@ -17,15 +17,17 @@ namespace HelloWebApi.Controllers
     {
         private readonly ILogger<RegistrationController> _logger;
         private readonly TokenAuthOptions _tokenOptions;
-        private readonly IRegistrationProvider _provider;
+        private readonly IRegistrationProvider _registartionProvider;
+        private readonly IAuthenticationProvider _authenticationProvider;
 
 
 
-        public RegistrationController(ILogger<RegistrationController> logger, TokenAuthOptions tokenOptions, IRegistrationProvider provider)
+        public RegistrationController(ILogger<RegistrationController> logger, TokenAuthOptions tokenOptions, IRegistrationProvider registrationProvider, IAuthenticationProvider authenticationProvider)
         {
             _logger = logger;
             _tokenOptions = tokenOptions;
-            _provider = provider;
+            _registartionProvider = registrationProvider;
+            _authenticationProvider = authenticationProvider;
         }
 
 
@@ -36,7 +38,7 @@ namespace HelloWebApi.Controllers
         {
             _logger.LogInformation("userDetails");
 
-            int cid = _provider.Register(userDetails);
+            int cid = _registartionProvider.Register(userDetails);
 
             return new { Cid = cid, LoginAccessToken = GetAccessToken(cid) };
 
