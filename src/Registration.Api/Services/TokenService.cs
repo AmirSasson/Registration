@@ -1,6 +1,7 @@
 ﻿using HelloWebApi.Controllers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -25,7 +26,10 @@ namespace HelloWebApi.Services
 
     public class Segment : ISegment
     {
+        [Range(0, 100)]
+        [Required(AllowEmptyStrings = false)]
         public int Brand { get; set; }
+        [Required]
         public int SubBrand { get; set; }
     }
 

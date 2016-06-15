@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CoreHelloWorld.Models
-{
+{      
     /// <summary>
     /// Brand Business Object
     /// </summary>
     public class Brand
     {
+
         /// <summary>
         /// Gets or sets the brand_ identifier.
         /// </summary>

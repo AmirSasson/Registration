@@ -36,8 +36,10 @@ namespace CoreHelloWorld
         {
         }
 
+
+
         /// <summary>
-        /// Dapper the call.
+        /// Dappers the call.
         /// </summary>
         private static void DapperCall()
         {

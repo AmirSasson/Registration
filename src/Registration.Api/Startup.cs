@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http.Abstractions;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using HelloWebApi.Controllers;
 using HelloWebApi.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HelloWebApi
 {
@@ -71,7 +71,7 @@ namespace HelloWebApi
             services.AddTransient<IRegistrationProvider, Triple8RegisterProvider>();
             services.AddTransient<ITokenService, TokenService>();
 
-
+            services.AddSwaggerGen();
 
             // Enable the use of an [Authorize("Bearer")] attribute on methods and
             // classes to protect.
@@ -153,6 +153,9 @@ namespace HelloWebApi
 
             app.UseMetricsMiddleware();
             app.UseMvc();
+
+            app.UseSwaggerGen();
+            app.UseSwaggerUi();
 
         }
 

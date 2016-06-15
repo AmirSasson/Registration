@@ -7,6 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
 using HelloWebApi.Services;
+using HelloWebApi.Models;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,10 +26,15 @@ namespace HelloWebApi.Controllers
 
         // POST api/values
         [HttpPost]
+        [Produces(typeof(SegmentToken))]        
         public dynamic Post([FromBody]Segment segment)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var token = _tokenService.Issue(segment);
-            return new { authenticated = true, entityId = 1, token = token, tokenExpires = DateTime.Now.AddSeconds(90) };
+            return new SegmentToken { Authenticated = true, EntityId = 1, Token = token, TokenExpires = DateTime.Now.AddSeconds(90) };
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 
 namespace HelloWebApi
 {
@@ -12,6 +13,7 @@ namespace HelloWebApi
             {
                 try
                 {
+
                     return rsa.ExportParameters(true);
                 }
                 finally
@@ -20,6 +22,26 @@ namespace HelloWebApi
                 }
             }
         }
+
+        //public static RSAParameters Get(X509Certificate2 cert)
+        //{
+        //    //X509Certificate2 cert = new X509Certificate2(@"C:\my.pfx", "123", X509KeyStorageFlags.Exportable);
+        //    var p = GetRandomKey();
+        //    p.Modulus = cert.PublicKey;// GetPublicKey();
+
+        //    RSA rsa = RSACryptoServiceProvider.Create();
+        //    RSAParameters rp = new RSAParameters()
+        //    {
+                 
+        //    }
+        //    rp.Modulus = cert.GetPublicKey();
+        //    rp.Exponent = new byte[3] { 1, 0, 1 };
+        //    rp.
+
+        //    rsa.ImportParameters(rp);
+        //    //byte[] enc = rsa.EncryptValue(bValues);
+
+        //}
 
         public static void GenerateKeyAndSave(string file)
         {
